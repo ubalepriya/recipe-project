@@ -55,55 +55,54 @@ public class RecipeProjectApplication {
         ingredient                      =   new Ingredient();
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("ripe avacados");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("0.25"));
         ingredient.setDescription("salt");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("1.0"));
         ingredient.setDescription("fresh lime juice");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("minced red onion");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("chiles, stems and seeds removed, minced");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("cilantro (leaves and tender stems), finely chopped");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         ingredient.setAmount(new BigDecimal("0.5"));
         ingredient.setDescription("ripe tomato, seeds and pulp removed, chopped");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
 
-        recipe.getCategory().add(categoryRepository.findByDescription("ITALIAN").get());
-        //categoryRepository.findByDescription("MEXICAN").get().getRecipe().add(recipe);
+
+        recipe.addCategory(categoryRepository.findByDescription("ITALIAN").get());
 
         recipe.setCookTime(10);
         recipe.setPrepTime(10);
@@ -149,82 +148,79 @@ public class RecipeProjectApplication {
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("ancho chili powder");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("dried oregano");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("sugar");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("0.5"));
         ingredient.setDescription("salt");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("clove garlic, finely chopped");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("1.0"));
         ingredient.setDescription("dried cumin");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("finely grated orange zest");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("3.0"));
         ingredient.setDescription("fresh-squeezed orange juice");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("2"));
         ingredient.setDescription("olive oil");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
+        
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("KG").get();
         ingredient.setUnitOfMeasure(unitOfMeasure);
         ingredient.setAmount(new BigDecimal("0.5"));
         ingredient.setDescription("boneless chicken thighs");
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
+        recipe.addIngredient(ingredient);
 
-
-        recipe.getCategory().add(categoryRepository.findByDescription("MEXICAN").get());
-        //categoryRepository.findByDescription("MEXICAN").get().getRecipe().add(recipe);
+        recipe.addCategory(categoryRepository.findByDescription("MEXICAN").get());
 
         recipe.setCookTime(15);
         recipe.setPrepTime(20);

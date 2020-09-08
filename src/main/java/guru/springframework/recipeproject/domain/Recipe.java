@@ -30,7 +30,7 @@ public class Recipe {
         joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private Set<Category> category  =   new HashSet<Category>();
+    private Set<Category> categories  =   new HashSet<Category>();
 
     public void setId(Long id) {
         this.id = id;
@@ -120,6 +120,13 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe addIngredient(Ingredient ingredient)
+    {
+        ingredient.setRecipe(this);
+        ingredients.add(ingredient);
+        return this;
+    }
+
     public Difficulty getDifficulty() {
         return difficulty;
     }
@@ -129,10 +136,15 @@ public class Recipe {
     }
 
     public Set<Category> getCategory() {
-        return category;
+        return categories;
     }
 
-    public void setCategory(Set<Category> category) {
-        this.category = category;
+    public void setCategory(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public void addCategory(Category category)
+    {
+        categories.add(category);
     }
 }
