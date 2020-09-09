@@ -4,15 +4,19 @@ import guru.springframework.recipeproject.domain.*;
 import guru.springframework.recipeproject.repositories.CategoryRepository;
 import guru.springframework.recipeproject.repositories.RecipeRepository;
 import guru.springframework.recipeproject.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import java.math.BigDecimal;
 
+@Slf4j
 @SpringBootApplication
 public class RecipeProjectApplication {
 
     public static void main(String[] args) {
+
+        log.info("Main class starts");
         ApplicationContext ctx  =    SpringApplication.run(RecipeProjectApplication.class, args);
 
         UnitOfMeasureRepository unitOfMeasureRepository =   (UnitOfMeasureRepository) ctx.getBean("unitOfMeasureRepository");
@@ -22,9 +26,11 @@ public class RecipeProjectApplication {
         System.out.println(unitOfMeasureRepository.findByUom("CUP").get().getId());
         System.out.println(categoryRepository.findByDescription("ITALIAN").get().getId());
 
+        log.info("Loading Guacamole Recipe");
         Recipe  recipe  =   loadGuacamoleRecipe(unitOfMeasureRepository, categoryRepository);
         recipeRepository.save(recipe);
 
+        log.info("Loading Chicken Taco Recipe");
         recipe  =   loadChickenRecipe(unitOfMeasureRepository, categoryRepository);
         recipeRepository.save(recipe);
     }
@@ -102,7 +108,7 @@ public class RecipeProjectApplication {
         recipe.addIngredient(ingredient);
 
 
-        recipe.addCategory(categoryRepository.findByDescription("ITALIAN").get());
+        recipe.getCategory().add(categoryRepository.findByDescription("ITALIAN").get());
 
         recipe.setCookTime(10);
         recipe.setPrepTime(10);
@@ -220,7 +226,7 @@ public class RecipeProjectApplication {
         ingredient.setDescription("boneless chicken thighs");
         recipe.addIngredient(ingredient);
 
-        recipe.addCategory(categoryRepository.findByDescription("MEXICAN").get());
+        recipe.getCategory().add(categoryRepository.findByDescription("MEXICAN").get());
 
         recipe.setCookTime(15);
         recipe.setPrepTime(20);
