@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,4 +45,17 @@ class RecipeServiceTest {
         //Since in recipeService.getAllRecipes(), recipeRepository.findAll() is called only once, it should get verified.
         verify(recipeRepository, times(1)).findAll();
     }
+
+    @Test
+    void getRecipeById() throws Exception{
+        Long recipeId   =   1l;
+        Recipe recipe   =   new Recipe();
+        recipe.setId(recipeId);
+        when(recipeRepository.findById(recipeId)).thenReturn(Optional.of(recipe));
+        Recipe recipe2   =   recipeService.getRecipeById(recipeId);
+        assertNotNull(recipe2);
+
+    }
+
+
 }
