@@ -4,6 +4,8 @@ import guru.springframework.recipeproject.domain.Recipe;
 import guru.springframework.recipeproject.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -42,5 +44,18 @@ public class RecipeService {
             throw new RuntimeException("Recipe not present");
         }
         return recipe;
+    }
+
+    @Transactional
+    public Recipe saveRecipe(Recipe recipe) {
+
+        Recipe savedRecipe = recipeRepository.save(recipe);
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
+        return savedRecipe;
+    }
+
+    public void deleteRecipeById(Long id)
+    {
+        recipeRepository.deleteById(id);
     }
 }

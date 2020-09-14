@@ -24,18 +24,32 @@
             <div class="pannel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="#" th:href="@{'/recipe/' +${recipe.id} +'/image'}"
+                                   class="btn btn-default" role="button">Change Image</a>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
                                 <h5>Categories:</h5>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-3">
                                 <ul>
                                     <!--/*@thymesVar id="recipe" type="guru.springframework.recipeproject.domain.Recipe"*/-->
                                     <li th:each="category : ${recipe.categories}" th:text="${category.getDescription()}"> </li>
                                 </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="../../static/images/guacamole400x400WithX.jpg"
+                                th:src="@{'/recipe/'+${recipe.id}+'/recipeImage'}"
+                                     width="200" height="200">
                             </div>
                         </div>
                         <div class="row">
@@ -71,24 +85,32 @@
                                 <h5>Source:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.source}">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>URL:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>http://www.example.com</p>
+                                <p th:text="${recipe.url}">http://www.example.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1 class="panel-title" >Ingredients</h1>
+                        <div class="row">
+                            <div class="col-md-11">
+                                <h1 class="panel-title" >Ingredients</h1>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-default" href="#"
+                                   th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-11">
                                 <ul>
                                     <!--/*@thymesVar id="recipe" type="guru.springframework.recipeproject.domain.Recipe"*/-->
                                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${(
@@ -100,6 +122,7 @@
 
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>

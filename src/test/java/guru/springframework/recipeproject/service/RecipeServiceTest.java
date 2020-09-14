@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
@@ -55,6 +56,14 @@ class RecipeServiceTest {
         Recipe recipe2   =   recipeService.getRecipeById(recipeId);
         assertNotNull(recipe2);
 
+    }
+
+    @Test
+    public void deleteRecipeById()
+    {
+        Long recipeId   =   1l;
+        recipeService.deleteRecipeById(recipeId);
+        verify(recipeRepository,times(1)).deleteById(any());
     }
 
 

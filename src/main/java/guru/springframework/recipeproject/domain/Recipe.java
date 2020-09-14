@@ -45,6 +45,11 @@ public class Recipe {
         return this;
     }
 
+    public void removeIngredient(Ingredient ingredient)
+    {
+        ingredients.remove(ingredient);
+    }
+
     public Set<Category> getCategory() {
         return categories;
     }
