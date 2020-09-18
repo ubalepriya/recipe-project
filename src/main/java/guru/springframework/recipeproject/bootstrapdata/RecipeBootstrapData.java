@@ -1,36 +1,42 @@
-package guru.springframework.recipeproject;
+package guru.springframework.recipeproject.bootstrapdata;
 
 import guru.springframework.recipeproject.domain.*;
 import guru.springframework.recipeproject.repositories.CategoryRepository;
 import guru.springframework.recipeproject.repositories.RecipeRepository;
 import guru.springframework.recipeproject.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 
 @Slf4j
-@SpringBootApplication
-public class RecipeProjectApplication {
+@Component
+@Profile("default")
+public class RecipeBootstrapData implements ApplicationListener<ContextRefreshedEvent>
+{
+    private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final CategoryRepository categoryRepository;
+    private final RecipeRepository recipeRepository;
 
-    public static void main(String[] args) {
+    public RecipeBootstrapData(UnitOfMeasureRepository unitOfMeasureRepository, CategoryRepository categoryRepository, RecipeRepository recipeRepository) {
+        this.unitOfMeasureRepository = unitOfMeasureRepository;
+        this.categoryRepository = categoryRepository;
+        this.recipeRepository = recipeRepository;
+    }
 
-        SpringApplication.run(RecipeProjectApplication.class, args);
-      /*  log.info("Main class starts");
-        ApplicationContext ctx  =    SpringApplication.run(RecipeProjectApplication.class, args);
 
-        UnitOfMeasureRepository unitOfMeasureRepository =   (UnitOfMeasureRepository) ctx.getBean("unitOfMeasureRepository");
-        CategoryRepository  categoryRepository          =   (CategoryRepository)    ctx.getBean("categoryRepository") ;
-        RecipeRepository    recipeRepository            =   (RecipeRepository)  ctx.getBean("recipeRepository") ;
-
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
         log.info("Loading Guacamole Recipe");
-        Recipe  recipe  =   loadGuacamoleRecipe(unitOfMeasureRepository, categoryRepository);
+        Recipe recipe  =   loadGuacamoleRecipe(unitOfMeasureRepository, categoryRepository);
         recipeRepository.save(recipe);
 
         log.info("Loading Chicken Taco Recipe");
         recipe  =   loadChickenRecipe(unitOfMeasureRepository, categoryRepository);
-        recipeRepository.save(recipe);*/
+        recipeRepository.save(recipe);
     }
 
     private static Recipe loadGuacamoleRecipe(UnitOfMeasureRepository unitOfMeasureRepository, CategoryRepository  categoryRepository)
@@ -38,7 +44,7 @@ public class RecipeProjectApplication {
         Recipe recipe   =   new Recipe();
         recipe.setDescription("The Perfect Guacamole");
         Ingredient ingredient           =   null;
-        UnitOfMeasure   unitOfMeasure   =   null;
+        UnitOfMeasure unitOfMeasure   =   null;
         recipe.setDifficulty(Difficulty.EASY);
         Notes guacamoleNote             =   new Notes();
         guacamoleNote.setRecipeNotes("Be careful handling chiles if using. Wash your hands thoroughly after handling and do not touch your eyes or the area near your eyes with your hands for several hours.");
@@ -83,7 +89,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("minced red onion");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
@@ -91,7 +97,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("chiles, stems and seeds removed, minced");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
@@ -99,7 +105,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("cilantro (leaves and tender stems), finely chopped");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("EACH").get();
@@ -156,7 +162,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("2.0"));
         ingredient.setDescription("ancho chili powder");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
@@ -164,7 +170,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("dried oregano");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
@@ -172,7 +178,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("sugar");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TEASPOON").get();
@@ -180,7 +186,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("0.5"));
         ingredient.setDescription("salt");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("EACH").get();
@@ -188,7 +194,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("clove garlic, finely chopped");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
@@ -196,7 +202,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("1.0"));
         ingredient.setDescription("dried cumin");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
@@ -204,7 +210,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("1"));
         ingredient.setDescription("finely grated orange zest");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
@@ -212,7 +218,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("3.0"));
         ingredient.setDescription("fresh-squeezed orange juice");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("TABLESPOON").get();
@@ -220,7 +226,7 @@ public class RecipeProjectApplication {
         ingredient.setAmount(new BigDecimal("2"));
         ingredient.setDescription("olive oil");
         recipe.addIngredient(ingredient);
-        
+
 
         ingredient                      =   new Ingredient();
         unitOfMeasure                   =   unitOfMeasureRepository.findByUom("KG").get();
@@ -252,5 +258,4 @@ public class RecipeProjectApplication {
         return recipe;
 
     }
-
 }
